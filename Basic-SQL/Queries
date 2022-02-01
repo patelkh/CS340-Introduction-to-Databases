@@ -130,9 +130,9 @@ SELECT * FROM bsg_people WHERE age is not NULL;
 -- Once you have created the table, run the query "DESCRIBE bsg_spaceship;"
 
 CREATE TABLE bsg_spaceship (
-id 							int 			PRIMARY KEY 	AUTO_INCREMENT, 
-name 						varchar(255) 	NOT NULL,
-separate_saucer_section 	boolean 		NOT NULL 		DEFAULT 0, 
-length						int 			NOT NULL);
+id 	int PRIMARY KEY AUTO_INCREMENT, 
+name 	varchar(255) 	NOT NULL,
+separate_saucer_section boolean NOT NULL DEFAULT 0, 
+length	int NOT NULL);
 
 DESCRIBE bsg_spaceship;
