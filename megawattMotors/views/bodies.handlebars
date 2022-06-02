@@ -1,0 +1,36 @@
+<html>
+
+<h3>Add Body:</h3>
+<form id="addbody" action="/bodies" method="post">
+    Name: <input required type="text" name="name"><br>
+    Price: <input required type="number" min="0.00" step="0.01" name="price"><br>
+    <input type="submit" value="Submit">
+</form>
+
+
+<h3>Search Body by Name:</h3>
+<form id='search_body' action='' method=''>
+    <!--- this form does not submit directly, the button handles all the interaction with backend -->
+    <label> Search body by name:</label>
+    <input required id='body_search_string' type='text' name='body_search_string' value=''>
+    <input type="button" value="Search" onclick="searchBodyByName()">
+</form>
+
+<h3>Bodies:</h3>
+<table class="table" cellspacing=3 cellpadding=5 id="order_table">
+    <thead>
+    <th>Name</th>
+    <th>Price</th>
+    </thead>
+
+    <tbody>
+    {{#each bodies}}
+        <tr>
+            <td>{{body_title}}</td>
+            <td>{{body_price}}</td>
+            <td><button class='delete_icon' onClick="deletebody({{body_id}})"></button></td>
+        </tr>
+    {{/each}}
+    </tbody>
+</table>
+</html>

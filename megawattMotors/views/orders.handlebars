@@ -1,0 +1,125 @@
+<html>
+
+<h3>Add new order:</h3>
+<form id="addorder" action="/orders" method="post">
+    Customer Name: <select name="customer_id">
+        {{#each customers}}
+        <option value="{{id}}">{{first_name}} {{last_name}}
+        </option>
+        {{/each}}
+    </select><br>
+
+    Referral Name: <select name="referral_id">
+        {{#each employees}}
+        <option value="{{id}}">{{first_name}} {{last_name}}</option>
+        {{/each}}
+        <option value=""></option>
+    </select><br>
+
+    Battery: <select name="battery_id">
+        {{#each batteries}}
+        <option value="{{id}}">{{battery_title}}</option>
+        {{/each}}
+    </select><br>
+
+    Body: <select name="body_id">
+        {{#each bodies}}
+        <option value="{{id}}">{{body_title}}</option>
+        {{/each}}
+    </select><br>
+
+    Finish: <select name="finish_id">
+        {{#each finishes}}
+        <option value="{{id}}">{{finish_title}}</option>
+        {{/each}}
+    </select><br>
+
+    Wheelset: <select name="wheelset_id">
+        {{#each wheelsets}}
+        <option value="{{id}}">{{wheel_title}}</option>
+        {{/each}}
+    </select><br>
+
+    {{!-- Custom Features: <select multiple  name="custom_features_id">
+        {{#each customfeatures}}
+        <option value="{{id}}">{{feature_title}}</option>
+        {{/each}}
+    </select><br> --}}
+
+    Order Date: <input required type="date" name="order_date"><br>
+    Delivery Date: <input required type="date" name="delivery_date"><br>
+    Price: <input required type="number" name="order_price"><br>
+    <input type="Submit" value="Submit">
+ </form>
+<br>
+
+<h3>Current Orders:</h3>
+
+<table class="table" cellspacing=3 cellpadding=5 id="order_table">
+    <thead> 
+        <th>Order ID</th> 
+        <th>Referral ID</th> 
+        <th>Customer ID</th>
+        <th>Order Date</th>
+        <th>Delivery Date</th> 
+        <th>Order Price</th>
+        <th>Battery ID</th>
+        <th>Body ID</th> 
+        <th>Finish ID</th>
+        <th>Wheel ID</th>
+    </thead>
+    <tbody>
+        {{#each orders}}
+        <tr>
+            <td>{{order_id}}</td>
+            <td>{{referral_id}}</td>
+            <td>{{customer_id}}</td>
+            <td>{{order_date}}</td>
+            <td>{{delivery_date}}</td>
+            <td>{{order_price}}</td>
+            <td>{{battery_id}}</td>
+            <td>{{body_id}}</td>
+            <td>{{finish_id}}</td>
+            <td>{{wheel_id}}</td>
+            <td><button class='delete_icon' onClick="deleteorder({{order_id}})"></button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table> </br>
+
+<h3>Add Custom Features to an Existing Order:</h3>
+<h5>1:M Relationship between Orders and Order Features</h5>
+<form id="addcustomfeatures" action="/orders/customfeatures" method="post">
+    Order ID: <select name="order_id">
+        {{#each orders}}
+        <option value="{{order_id}}">{{order_id}}
+        </option>
+        {{/each}}
+    </select><br>
+
+    Custom Features: <select multiple  name="custom_features_id">
+    {{#each customfeatures}}
+    <option value="{{id}}">{{feature_title}}</option>
+    {{/each}}
+    </select><br><br>
+    <input type="Submit" value="Submit">
+ </form>
+<br/>
+
+<h3>Order Features (junction table)</h3>
+<table class="table" cellspacing=3 cellpadding=5 id="order_table">
+    <thead>
+        <th>Order ID</th>
+        <th>Feature ID</th>
+    </thead>
+    <tbody>
+        {{#each orderfeatures}}
+        <tr>
+            <td>{{order_id}}</td>
+            <td>{{feature_id}}</td>
+            <td><button class='delete_icon' onClick="deleteorderfeature({{order_id}}, {{feature_id}})"></button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+</html>

@@ -1,0 +1,32 @@
+<html>
+
+<h3>Add Custom Features:</h3>
+<form id="addcustomfeatures" action="/customfeatures" method="post">
+    Feature Name: <input required type="text" name="feature_title"><br>
+    Feature Price: <input required type="number" min="0.00" step="0.01" name="feature_price"><br>
+    <input type="Submit" value="Submit">
+</form>
+</br>
+
+
+<h3>Custom Features</h3>
+
+<table class="table" cellspacing=3 cellpadding=5 id="order_table">
+    <thead> 
+        <th>Feature ID</th> 
+        <th>Name</th> 
+        <th>Price</th>
+
+    </thead>
+    <tbody>
+        {{#each customfeatures}}
+        <tr>
+            <td>{{this.feature_id}}</td>
+            <td>{{this.feature_title}}</td>
+            <td>{{this.feature_price}}</td>
+            <td><button class='delete_icon' onClick="deletefeature({{feature_id}})"></button></td>
+        </tr>
+        {{/each}}
+    </tbody>  
+</table> 
+</html>

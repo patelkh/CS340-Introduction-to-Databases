@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Update Customer</title>
+</head>
+<body>
+<h1>Update {{customer.first_name}} {{customer.last_name}}:</h1>
+<form id="updatecustomer" action="/customers" method="post">
+    First name: <input required type="text" name="first_name" value="{{customer.first_name}}"><br>
+    Last name: <input required type="text" name="last_name" value="{{customer.last_name}}"><br>
+    Address: <input required type="text" name="customer_address" value="{{customer.customer_address}}"><br>
+    City: <input required type="text" name="city" value="{{customer.city}}"><br>
+    State: <input required type="text" name="customer_state" value="{{customer.customer_state}}"><br>
+    Zipcode: <input required type="text" name="zip_code" value="{{customer.zip_code}}"><br>
+    Phone Number: <input required type="text" name="phone_number" value="{{customer.phone_number}}"><br>
+</form>
+<button onclick="updatecustomer({{customer.customer_id}})">Update</button>
+</body>
+</html>

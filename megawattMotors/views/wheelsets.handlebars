@@ -1,0 +1,36 @@
+<html>
+
+<h3>Add Wheelset:</h3>
+<form id="addwheel" action="/wheelsets" method="post">
+    Name: <input required type="text" name="name"><br>
+    Price: <input required type="number" min="0.00" step="0.01" name="price"><br>
+    <input type="submit" value="Submit">
+ </form>
+
+
+<h3>Search Wheelset by Name:</h3>
+<form id='search_wheel' action='' method=''>
+<!--- this form does not submit directly, the button handles all the interaction with backend -->
+    <label> Search wheelset by name:</label>
+    <input required id='wheel_search_string' type='text' name='wheel_search_string' value=''>
+    <input type="button" value="Search" onclick="searchWheelByName()">
+</form>
+
+<h3>Wheelsets:</h3>
+<table class="table" cellspacing=3 cellpadding=5 id="order_table">
+    <thead> 
+        <th>Name</th>
+        <th>Price</th>
+    </thead>
+
+    <tbody>
+        {{#each wheelsets}}
+        <tr> 
+            <td>{{wheel_title}}</td>
+            <td>{{wheel_price}}</td>
+            <td><button class='delete_icon' onClick="deletewheelset({{wheel_id}})"></button></td>
+        </tr> 
+        {{/each}} 
+    </tbody> 
+</table> 
+</html>

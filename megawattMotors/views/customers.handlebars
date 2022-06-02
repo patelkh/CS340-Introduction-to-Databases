@@ -1,0 +1,55 @@
+<html>
+
+<h3>Add Customer:</h3>
+<form id="addcustomer" action="/customers" method="post">
+    First Name: <input required type="text" name="first_name"><br>
+    Last Name: <input required type="text" name="last_name"><br>
+    Address: <input required type="text" name="customer_address">
+    City: <input required type="text" name="city">
+    State: <input required type="text" name="customer_state">
+    Zipcode: <input required type="text" name="zip_code"><br>
+    Phone Number: <input required type="text" name="phone_number"><br>
+    <input type="Submit" value="Submit">
+</form>
+
+
+<h3>Search By Customer First Name:</h3>
+<form id='search_customer' action='' method=''>
+<!--- this form does not submit directly, the button handles all the interaction with backend -->
+    <label> Search customer by first name starting with:</label>
+    <input required id='first_name_search_string' type='text' name='first_name_search_string' value=''>
+    <input type="button" value="Search" onclick="searchCustomerByFirstName()">
+</form>
+
+
+<h3>Current Customers:</h3>
+<table class="table" cellspacing=3 cellpadding=5 id="order_table">
+    <thead> 
+        <th>Customer ID</th> 
+        <th>First Name</th> 
+        <th>Last Name</th>
+        <th>Address</th>
+        <th>City</th> 
+        <th>State</th>
+        <th>Zipcode</th>
+        <th>Phone Number</th> 
+    </thead>
+
+    <tbody>
+        {{#each customers}}
+        <tr>
+            <td>{{customer_id}}</td>
+            <td>{{first_name}}</td>
+            <td>{{last_name}}</td>
+            <td>{{customer_address}}</td>
+            <td>{{city}}</td>
+            <td>{{customer_state}}</td>
+            <td>{{zip_code}}</td>
+            <td>{{phone_number}}</td>
+            <td><a class='update_icon' href="/customers/{{customer_id}})"></a></td>
+            <td><button class='delete_icon' onClick="deletecustomer({{customer_id}})"></button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table> 
+</html>
